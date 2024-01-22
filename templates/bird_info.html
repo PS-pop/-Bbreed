@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" herf="/static/css/home.css">
+<style>
+    /* Add some basic styling for the layout */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .image-container {
+        text-align: center;
+        padding: 20px;
+    }
+    .main-image {
+        max-width: 100%;
+        height: auto;
+    }
+    .thumbnail {
+        max-width: 100px;
+        height: auto;
+        margin: 5px;
+        cursor: pointer;
+    }
+</style>
+{% endblock styles %} 
+
+{% block content %}
+<main>
+    
+    <section id="breeds-grid">
+        <div class="d-flex justify-content-center" style="padding-top: 30px;">
+            <div style="position: absolute; left: 100px; top: 110px;">
+                <h3>Breed information</h3>
+            </div>
+            <div class="card mb-3" style="max-width: 1020px; ">
+                <div class="row g-0">
+                    <div class="col-md-8"><div class="card-body">
+                        <h5 class="card-title" id="bird-title"></h5>
+                            <p class="card-text" id="bird-id"></p>
+                            <!--<script>
+                                const jsonString  = sessionStorage.getItem("birdData")
+                                const data = jsonString.replace(/ObjectId\('(.*?)'\)/g, '"$1"').replace(/'/g, '"');
+                                const bird = JSON.parse(data)
+                                $( document ).ready(function() {
+                                    $("#bird-title").text(bird.name)
+                                    $("#bird-id").text(bird._id)
+                                });
+                            </script>-->
+                    </div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<div class="image-container">
+    <h1>Big Image</h1>
+    <!--<img class="main-image" src="<data:image/jpg;base64,{{bird.images[0]}}" alt="Big Image">-->
+</div>
+
+<div class="image-container">
+    <h2>Thumbnail Images</h2>
+    <img class="thumbnail" src="{{url_for('static', filename='images/Bird store logo.png')}}" alt="Image 1">
+    <img class="thumbnail" src="{{url_for('static', filename='images/Bird store logo.png')}}" alt="Image 2">
+    <img class="thumbnail" src="{{url_for('static', filename='images/Bird store logo.png')}}" alt="Image 3">
+    <!-- Add more thumbnail images as needed -->
+</div>
+{% endblock content %}
+
+
+{% block script %} 
+<script>
+    tabId='breed-tab'
+    console.log(tabId)
+</script>
+{% endblock script %} 

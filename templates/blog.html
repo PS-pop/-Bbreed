@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" herf="/static/css/home.css">
+{% endblock styles %} 
+
+{% block content %}
+<main>
+    <section id="blogs">
+        <div class="container">
+            <div class="row px-2">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-12 pt-5">
+                    <h1>Blogs</h1>
+                    <p>We sell Bird Breeds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock content %}
+
+{% block script %} 
+<script>
+    tabId='blog-tab'
+    console.log(tabId)
+</script>
+{% endblock script %} 

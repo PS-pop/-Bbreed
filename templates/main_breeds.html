@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" herf="/static/css/home.css">
+{% endblock styles %} 
+
+{% block content %}
+<div id="breeds-grid">
+<div class="container mt-4">
+    <div style="position: absolute; left: 100px; top: 110px; display: flex;
+        flex-direction: row;
+        align-items: flex-center">
+        <h3 style="padding-right: 10px;">Our Breeds</h3>
+        <!--<span class="fa-stack fa-1x" style="flex-shrink: 0; color:#59bd4c;" id="open_bird"><i class="fas fa-square fa-stack-2x"></i> <i class="fas fa-plus fa-stack-1x fa-inverse"></i></span>--> 
+    </div>
+    <!-- Loop to generate multiple rows -->
+    {% for breed in breeds: %}
+    <div class="row mb-4" style="border-bottom: 0.7px solid #ccc;">
+        <div class="col-md-2">
+            <div class="circle-image">
+                <img src="static\images\Bird store logo.png" alt="breed_image">
+            </div>
+        </div>
+        <div class="col-md d-flex justify-content-between align-items-center">
+            <div>
+                <h2>{{breed.name}}</h2>
+                <p>{{breed.desc}}</p>
+                <p>Can talk: {{breed.canTale}}</p>
+            </div>
+            <div>
+                <a href="#" class="btn btn-primary">Explore</a>
+                <p>sibling species {{breed.numSpecies}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Repeat the above row structure for as many rows as you need -->
+</div>
+
+<div>
+{% endblock content %}
+
+
+{% block script %} 
+<script>
+
+    tabId='breed-tab'
+    console.log(tabId)
+    
+</script>
+{% endblock script %} 

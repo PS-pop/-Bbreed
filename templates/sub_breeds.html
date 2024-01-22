@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" herf="/static/css/home.css">
+{% endblock styles %} 
+
+{% block content %}
+<main>
+    
+    <section id="breeds-grid">
+        <div class="container">
+
+            <div style="position: absolute; left: 100px; top: 110px; display: flex;
+                flex-direction: row;
+                align-items: flex-center">
+                <h3 style="padding-right: 10px;">Our Breeds</h3>
+                <!--<span class="fa-stack fa-1x" style="flex-shrink: 0; color:#59bd4c;" id="open_bird"><i class="fas fa-square fa-stack-2x"></i> <i class="fas fa-plus fa-stack-1x fa-inverse"></i></span>--> 
+            </div>
+
+            <div class="row row-cols-sm-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+
+                <form class="col add_bird_form needs-validation" novalidate id="add_bird_form" style="display: none;">
+                    <div class="card p-3">
+                        <div class="image-container">
+                            <img id="previewImage" src="static\images\Bird store logo.png" width="30px" class="card-img-top" alt="Bird image"/>
+                            <input type="file" id="bird_image" name="bird_image" accept="image/png, image/jpeg" style="display: none;"/>
+                            <!--<i class="fad fa-pen"></i>-->
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Bird name</label>
+                                <input type="text" class="form-control" id="bird_name" placeholder="Bird name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Short description</label>
+                                <input type="text" class="form-control" id="bird_desc" placeholder="Short description">
+                            </div>
+                            <div class="col-12">
+                                <div class="btn btn-primary" id="submit_bird_from" type="button">Submit</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-times-circle fa-lg position-absolute top-0 start-100 translate-middle" id="close_bird" style="color: #e34646;"></i>
+                    </div>
+                    
+                </form>
+
+                {% for bird in birdsInfo: %}
+                <div class="col"><div class="card p-3" style="">
+                    <form action="/breeds" method="post">
+
+                    
+                        <div style= "height: 300px; border-width: 1px; overflow: hidden">
+                            <img src="data:image/jpg;base64,{{bird.images[0]}}" class="card-img-top" alt="Bird">
+                        </div>
+                        
+                        <div class="card-body">
+                        <h5 class="card-title">{{bird.name}}</h5>
+                        <p class="card-text">{{bird.price}}</p>
+                            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                            <a href="{{ url_for('bird_infoView', bird_name=bird.name, bird_data=bird) }}" id="explore_bird" class="btn btn-primary">Explore more</a>
+                        </div>
+                    </form>
+                </div></div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock content %}
+
+
+{% block script %} 
+<script>
+
+    tabId='breed-tab'
+    console.log(tabId)
+
+    $("#explore_bird").click(function(){
+        console.log($(this).attr("data-bird"))
+        sessionStorage.setItem('birdData', $(this).attr("data-bird"));
+    });  
+
+    // Show A Quick Add Bird From
+    $("#open_bird").click(function(){
+        console.log("open add template")
+        if($("#add_bird_form").is(":hidden")){
+            $("#add_bird_form").show()
+        }
+    })
+
+    $("#close_bird").click(function(){
+        if($("#add_bird_form").is(":visible")){
+            $("#add_bird_form").hide()
+        }
+    })
+    // Submit Bird from
+    $("#submit_bird_from").click(function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        let bird_image = $("#bird_image").val() || "static\images\Bird store logo.png";
+        let bird_name = $("#bird_name").val();
+        //let bird_desc = $("#bird_desc").val();
+        
+        console.log("Bird Image:", bird_image);
+        console.log("Bird Name:", bird_name);
+        //console.log("Bird Description:", bird_desc);
+        
+        // Encoding images in Base64
+        //const fs = require('fs');
+        //const imageBuffer = fs.readFileSync(bird_image);
+        //const base64Image = imageBuffer.toString('base64')
+        //console.log("base64Image:", base64Image);
+        $.getJSON('/_add_bird', {
+            name: bird_name,
+            image: bird_image
+        })
+
+        $("#add_bird_form").hide()
+    });
+
+    // Show Image preview
+    $("#previewImage").click(function() {
+        // console.log("Preview image clicked!");
+        $("#bird_image").click();
+    });
+    // Select Image
+    $("#bird_image").on("change", function(e) {
+        var file = e.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#previewImage").attr("src", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    
+</script>
+{% endblock script %} 

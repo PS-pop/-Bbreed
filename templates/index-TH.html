@@ -1,0 +1,64 @@
+{% extends 'base-TH.html' %}
+
+{% block styles %}
+<link rel="stylesheet" herf="/static/css/home.css">
+{% endblock styles %} 
+
+{% block topViewHeader %}
+<header id="header" class="header">
+{% endblock topViewHeader %}
+{% block endViewHeader %}
+    <section id="home">
+        <div class="container">
+            <div class="row px-2">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-12 pt-5">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <h1> เราจำหน่าย <span class="text-dark">นกนักพูด</span></h1>
+                        <p>Beautiful, enjoying speacker, animal therapy.</p>
+                        <button type="button" class="btn btn-success text-dark">เรียนรู้เพิ่มเติม</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+{% endblock endViewHeader %}
+
+{% block content %}
+<main>
+    
+    <section id="breeds">
+        <div class="container">
+            <div class="row px-2">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-12 pt-5">
+                    <h1>พันธุ์นก</h1>
+                    <p>เราจำหน่ายนกพูดได้</p>
+                    <a href="{{ url_for('productView_TH') }}" class="btn btn-secondary" tabindex="-1" role="button">ดูนกของเรา</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blogs">
+        <div class="container">
+            <div class="row px-2">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-12 pt-5">
+                    <h1>เรื่องราว</h1>
+                    <p>เรียนรู้วิธีการเลี้ยงและการสอนนกให้พูด</p>
+                    <a href="{{ url_for('blogView_TH') }}" class="btn btn-secondary" tabindex="-1" role="button">ดูเรื่องราวเพิ่มเติม</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock content %}
+
+{% block script %} 
+<script>
+    tabId='home-tab'
+    console.log(tabId)
+</script>
+{% endblock script %} 

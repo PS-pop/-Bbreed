@@ -1,0 +1,21 @@
+@media screen and (max-width: 1399px) {
+    #home  {
+        padding-top: 64px;
+    }
+}
+
+/* .image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.editable_icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+} */

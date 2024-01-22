@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Bire store</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="\static\plugins\fontawesome.pro.5.15.1\css\all.min.css">
+        <link rel="stylesheet" href="\static\plugins\bootstrap-5.1.3\css\bootstrap.min.css">
+        {% block styles %} {% endblock %}      
+    </head>
+    <body>
+        {% block topViewHeader %} {% endblock %} 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg fixed-top">
+                <div class="container-fluid" style="padding-right: 20px;">
+                    <a class="navbar-brand logo" href="/TH">
+                        <img src="{{url_for('static', filename='images/Bird store logo.png')}}" alt="" width="40" height="40" class="d-inline-block">
+                        B-Breeds
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="nav-item" id="language">TH</span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a href="{{ url_for('index_TH') }}" class="nav-link" id="home-tab">หน้าแรก</a></li>
+                            <li class="nav-item"><a href="{{ url_for('productView_TH') }}" class="nav-link" id="breed-tab">สายพันธุ์</a></li>
+                            <li class="nav-item"><a href="{{ url_for('blogView_TH') }}" class="nav-link" id="blog-tab">เรื่องราว</a></li>
+                            <li class="nav-item"><a href="{{ url_for('about_us_TH') }}" class="nav-link" id="about_us-tab">เกี่ยวกับเรา</a></li>
+                            <button class="btn btn-bd-light nav-link dropdown-toggle" id="bd-language" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+                                <span class="d-none d-lg-inline"></span>TH
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-language">
+                                <li><h6 class="dropdown-header">เลือกภาษา</h6></li>
+                                <li><a class="dropdown-item" href="/">EN</a></li>
+                                <li><a class="dropdown-item" href="#CN">CN</a></li>
+                                <li><a class="dropdown-item current" aria-current="true">TH</a></li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-secondary" tabindex="-1" role="button">ลงชื่อเข้าใช้</a>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% block endViewHeader %} {% endblock %} 
+
+        <section class="content">
+        {% block content %} {% endblock %}
+        </section>
+        
+        <script src="\static\plugins\bootstrap-5.1.3\js\bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+         
+        {% block script %} {% endblock %}
+
+        <script>
+            if(tabId){
+                $("li.nav-item").find(".active").removeClass("active")
+                $(`#${tabId}`).addClass("active")
+            }
+        </script>
+
+    </body>
+</html>
